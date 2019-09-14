@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, FlatList, RefreshControl } from 'react-native';
+import {
+  View,
+  FlatList,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
 import axios from 'axios';
 import PostCard from '../components/PostCard';
 
@@ -30,11 +35,10 @@ export default class PostsScreen extends Component {
     this.getFirstPage();
   }
 
-  onEndReached = () => {
-    const { fetching, fetchingPage, page } = this.state;
+  onEndReached = async () => {
+    const { page, fetching, fetchingPage } = this.state;
     if (fetching || fetchingPage || page > 500) return;
-
-    this.getNextPage();
+    await this.getNextPage();
   };
 
   getNextPage = async () => {
@@ -72,6 +76,7 @@ export default class PostsScreen extends Component {
         photos: newPhotos,
         page,
       });
+      console.log(this.state.page);
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +84,13 @@ export default class PostsScreen extends Component {
 
   renderItem = record => {
     const { item: photo, index } = record;
-    return <PostCard photo={photo} />;
+    return <PostCard photo={photo} key={index} />;
+  };
+
+  renderFooter = () => {
+    const { fetchingPage } = this.state;
+    if (!fetchingPage) return null;
+    return <ActivityIndicator size="large" color="#1A237E" />;
   };
 
   render() {
@@ -94,10 +105,14 @@ export default class PostsScreen extends Component {
             <RefreshControl
               colors={['red', 'green', 'blue']}
               refreshing={fetching}
+              // onEndReachedThreshld={
+              //   photos.length ? (1 / photos.length) * 2 : 0.5
+              // }
               onRefresh={this.getFirstPage}
             />
           }
           onEndReached={this.onEndReached}
+          ListFooterComponent={this.renderFooter()}
         />
       </View>
     );

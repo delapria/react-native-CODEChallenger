@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { View, Image, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
 
 import defaultStyles from '../styles';
 
@@ -95,7 +102,9 @@ const PostCard = ({ photo }) => (
       <Avatar />
       <Text>{photo.title}</Text>
     </View>
-    <Image style={styles.image} source={{ uri: photo.url }} />
+    <TouchableOpacity onPress={() => Linking.openURL(photo.url)}>
+      <Image style={styles.image} source={{ uri: photo.url }} />
+    </TouchableOpacity>
   </View>
 );
 
