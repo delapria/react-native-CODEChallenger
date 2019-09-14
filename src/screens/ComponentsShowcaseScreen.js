@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
+  // Picker,
+  Switch,
 } from 'react-native';
 import imgPaisagem from '../assets/teste.jpg';
 
@@ -182,7 +184,10 @@ export default class ComponentsShowcase extends Component {
           {this.renderText()}
           {this.renderImages()}
           <View>
-            <MeuTouchable onPress={() => {}}>
+            <MeuTouchable
+              onPress={() => {
+                alert('teste');
+              }}>
               <View style={styles.button}>
                 <Text pointerEvents="none" style={styles.TextInput}>
                   Pressione
@@ -190,6 +195,8 @@ export default class ComponentsShowcase extends Component {
               </View>
             </MeuTouchable>
           </View>
+          {/* <Picker /> */}
+          <Switch />
         </ScrollView>
       </View>
     );
