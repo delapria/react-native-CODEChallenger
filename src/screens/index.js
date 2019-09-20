@@ -1,6 +1,7 @@
 import React from 'react';
 import { IconButton } from 'react-native-paper';
-import { createAppContainer } from 'react-navigation';
+
+import { createAppContainer, withNavigation } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -29,11 +30,15 @@ const TabNavigation = createMaterialTopTabNavigator({
   //}
 });
 
-const DrawerButton = props => {
+const DrawerButton = withNavigation(props => {
   return (
-    <IconButton icon="menu" size={24} onPress={() => console.log('pree')} />
+    <IconButton
+      icon="menu"
+      size={24}
+      onPress={() => props.navigation.openDrawer()}
+    />
   );
-};
+});
 
 const StackNavigator = createStackNavigator({
   Paper: {
