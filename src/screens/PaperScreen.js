@@ -18,20 +18,20 @@ const renderCanendarIcon = () => (
   <EvilIcons name="calendar" color="white" size={20} />
 );
 
-const PaperScreen = () => (
+const PaperScreen = ({ navigation }) => (
   <ScrollView contentContainerStyle={styles.scrollContainer}>
     <Button
       style={styles.button}
       icon="camera"
       mode="contained"
-      onPress={() => console.log('Pressed')}>
+      onPress={() => navigation.navigate('First')}>
       Botão de camera
     </Button>
     <Button
       icon={renderCanendarIcon}
       mode="contained"
-      onPress={() => console.log('Pressed')}>
-      Eu sou um EvilIcons
+      onPress={() => navigation.navigate('Tabs')}>
+      Tab navigator
     </Button>
   </ScrollView>
 );

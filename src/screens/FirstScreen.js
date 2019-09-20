@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView } from 'react-native';
 import Titulo from '../components/Titulo';
 import DeviceInfo from 'react-native-device-info';
 import Mathematic from '../utils/Math';
+import { Button } from 'react-native-paper';
 
 export default class FirstScreen extends Component {
   state = {
@@ -26,6 +27,10 @@ export default class FirstScreen extends Component {
     }
   }
 
+  onVoltarPress = () => {
+    this.props.navigation.goBack();
+  };
+
   render() {
     const { bateryLevel, sumResult } = this.state;
     const device = DeviceInfo.getDeviceCountry();
@@ -39,6 +44,7 @@ export default class FirstScreen extends Component {
           <Text>Espaço disco: {freeDiskStorage}</Text>
           <Text>Bateria: {bateryLevel}</Text>
           <Text>Soma feita no Java: {sumResult}</Text>
+          <Button onPress={this.onVoltarPress}>Voltar</Button>
         </SafeAreaView>
       </View>
     );
