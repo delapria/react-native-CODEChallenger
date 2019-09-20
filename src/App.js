@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
-// import PaperScreen from './screens/PaperScreen';
-// import ComponentsShowcaseScreen from './screens/ComponentsShowcaseScreen';
-// import PostsScreen from './screens/PostsScreen';
-// import FirstScreen from './screens/FirstScreen';
 import AppContainer from './screens';
 
-import { Proovider as ReduxProvider } from 'react-redux';
+import { Provider as ReduxProvider } from 'react-redux';
 import store from './redux';
 
 class App extends Component {
@@ -20,10 +16,6 @@ class App extends Component {
             barStyle="light-content"
           />
           <AppContainer />
-          {/* <FirstScreen /> */}
-          {/* <ComponentsShowcaseScreen /> */}
-          {/* <PostsScreen /> */}
-          {/* <PaperScreen /> */}
         </View>
       </ReduxProvider>
     );

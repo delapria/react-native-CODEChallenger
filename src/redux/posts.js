@@ -20,19 +20,19 @@ export const actions = {
 
 //REDUCERS
 
+const INITIAL_STATE = [];
+
 const postsHandler = handleActions(
   {
-    [POSTS_ADD_ACTION]: (state, action) => {
-      return [...state, action.payload];
-    },
-    [POSTS_CLEAR_ACTION]: () => {
-      return [];
-    },
+    [POSTS_ADD_ACTION]: (state, action) => [...state, action.payload],
     [POSTS_REMOVE_ACTION]: (state, action) => {
-      return state.filter((post, index) => index !== action.payload);
+      const newState = [...state];
+      newState.splice(action.payload, 1);
+      return newState;
     },
+    [POSTS_CLEAR_ACTION]: () => INITIAL_STATE,
   },
-  [],
+  INITIAL_STATE,
 );
 
 export const reducers = {
